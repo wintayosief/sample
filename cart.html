@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic E-Commerce Catalog</title>
+    <link rel="stylesheet" href="cart.css">
+    <div class="cart">
+        <button id="view-cart">View Cart</button>
+        <span id="cart-count">0</span> items in cart
+    </div>
+    
+    <!-- Add a placeholder for cart content -->
+    <div id="cart-content"></div>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Winta's online Store</h1>
+        <nav>
+            <button onclick="filterCategory('all')">All</button>
+            <button onclick="filterCategory('womens-dresses')">Women's Dresses</button>
+            <button onclick="filterCategory('mens-jackets')">Men's Jackets</button>
+            <button onclick="filterCategory('accessories')">Accessories</button>
+        </nav>
+        <div class="cart">
+            <span id="cart-count">0</span> items in cart
+        </div>
+    </header>
+
+    <main>
+        <section id="product-list" class="product-grid">
+            <!-- Product items will be dynamically inserted here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Online Store</p>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>

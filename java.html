@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced JavaScript Page</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      transition: background 0.3s ease;
+      color: #fff;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Light and Dark Theme Styles */
+    body.light-theme {
+      background: #ffffff;
+      color: #000;
+    }
+    body.dark-theme {
+      background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    }
+
+    /* Welcome Text and Animation */
+    h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+    .intro-text {
+      font-size: 1.2em;
+      margin: 10px 0 20px;
+    }
+
+    /* Button and Input Styles */
+    button, input[type="text"] {
+      padding: 12px;
+      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      background-color: #ff6b6b;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    button:hover {
+      background-color: #e45757;
+      transform: scale(1.1);
+    }
+
+    /* Interactive Background Animation */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      animation: move 10s linear infinite;
+      
+    }
+{
+    .shape {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: floatAnimation linear infinite;
+    }
+}
+    @keyframes move {
+      from { transform: translateY(0); }
+      to { transform: translateY(100vh); }
+    }
+
+    /* Particle Effect */
+    .particle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #ff6b6b;
+      border-radius: 50%;
+      animation: particleEffect 1s forwards;
+    }
+    @keyframes particleEffect {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.5) translate(100px, -100px); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="dark-theme">
+  <!-- Background Animation -->
+  <div class="background-animation"></div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <h1 id="welcome-text">Welcome to JavaScript, Winta!</h1>
+    <p class="intro-text">Click the button below to explore the magic of JavaScript!</p>
+
+    <!-- Name Input and Button -->
+    <input type="text" id="name-input" placeholder="Enter your name">
+    <button id="change-text-btn" onclick="changeText()">Greet Me</button>
+
+    <!-- Theme Toggle Button -->
+    <button onclick="toggleTheme()">Toggle Theme</button>
+  </div>
+
+  <script>
+    // Function to change welcome text and create particle effect
+    function changeText() {
+      const nameInput = document.getElementById("name-input").value;
+      const welcomeText = document.getElementById("welcome-text");
+      const button = document.getElementById("change-text-btn");
+      
+      // Update welcome text with user's name
+      welcomeText.innerText = nameInput ? Welcome to JavaScript, ${nameInput}! : "Welcome to JavaScript!";
+      
+      // Change button color randomly
+      button.style.backgroundColor = getRandomColor();
+      
+      // Create particle effect
+      createParticles(button);
+    }
+
+    // Function to generate a random color
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    // Particle Effect
+    function createParticles(button) {
+      const particlesContainer = document.createElement('div');
+      particlesContainer.classList.add('particles');
+      button.appendChild(particlesContainer);
+
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = ${Math.random() * 100}px;
+        particle.style.top = ${Math.random() * 100}px;
+        particlesContainer.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 1000);
+      }
+    }
+
+    // Toggle between light and dark theme
+    function toggleTheme() {
+      document.body.classList.toggle("dark-theme");
+      document.body.classList.toggle("light-theme");
+    }
+
+    // Background animation creation
+    const background = document.querySelector('.background-animation');
+    function createCircle() {
+      const circle = document.createElement('div');
+      circle.classList.add('circle');
+      circle.style.width = ${Math.random() * 50 + 10}px;
+      circle.style.height = circle.style.width;
+      circle.style.left = ${Math.random() * 100}vw;
+      circle.style.animationDuration = ${Math.random() * 10 + 5}s;
+      background.appendChild(circle);
+
+      setTimeout(() => {
+        circle.remove();
+      }, 10000);
+    }
+
+    // Continuously create circles for the background animation
+    setInterval(createCircle, 500);
+  </script>
+</body>
+</html>
